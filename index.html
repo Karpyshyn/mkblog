@@ -141,13 +141,30 @@ Reading time ~34 minutes
     
   </header>
   <div class="entry-content">
+      <p>I hope, some of this information will protect you from making common mistakes during development for iOS9+.</p>
 
+<p>I’ll also provide a small part theoretical base of cryptography. For those who is not aware about details – it will be a good point to get new knowledge and google for new terms. For others – just to remind</p>
+<h1 id="theory--history--good-to-know">Theory &amp; History &amp; Good to know</h1>
+<p>Let’s talk about cryptography base. This science is based on <b>Integer Number Theory</b>, <b>Finite Fields</b> and <b>Probability Theory</b>.</p>
+
+<p>In current context we should also define a term – <b>Negligibility</b>.</p>
+
+<p>In crypto, we consider probabilities that are negligible to be too small to matter.  That means if an attack works only with negligible probability, then we consider that attack to be unsuccessful.</p>
+
+<p>Next term we should keep in mind – is <b>PRNG</b> – Pseudorandom number generator or Deterministic Random Bit Generator. The output PRNG sequence is not truly random. It can be implemented via software algorithms or hardware. Actually the last one can give output much more closer to truly random with higher generation speed.</p>
+
+<p>Negligibility and PRNG – is the foundation of crypto algorithms. And let’s take a look on one old method called <b>OTP</b> (One-time pad).</p>
+
+<p>The main distinct property – is using key with length equal to original text
+It is absolutely impossible to crack it if:
+
+      
       <p style="text-align: center;">
           <strong>. . .</strong>
       </p>
       <p style="text-align: center;">
           <strong><a href="http://mkblog.info/security-mechanisms-provided-by-ios-9/" rel="bookmark" title="Security Mechanisms Provided by iOS9" itemprop="url"><u>CONTINUE READING</u></a></strong></p>
-
+      
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
