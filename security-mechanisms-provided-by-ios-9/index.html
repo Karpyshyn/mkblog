@@ -1,0 +1,354 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Security Mechanisms Provided by iOS9 &#8211; Mykyta's Karpyshyn Blog</title>
+<meta name="description" content="Let’s talk about some modern security solutions that was provided in iOS9, new cryptographic and secure APIs that will help you to protect your data">
+<meta name="keywords" content="iOS, iOS9, Security, Objective C, Swift">
+
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Security Mechanisms Provided by iOS9">
+<meta property="og:description" content="Let’s talk about some modern security solutions that was provided in iOS9, new cryptographic and secure APIs that will help you to protect your data">
+<meta property="og:url" content="http://mkblog.info/security-mechanisms-provided-by-ios-9/">
+<meta property="og:site_name" content="Mykyta's Karpyshyn Blog">
+
+
+
+
+
+<link rel="canonical" href="http://mkblog.info/security-mechanisms-provided-by-ios-9/">
+<link href="http://mkblog.info/feed.xml" type="application/atom+xml" rel="alternate" title="Mykyta's Karpyshyn Blog Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://mkblog.info/assets/css/main.css">
+<!-- Webfonts -->
+<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="http://mkblog.info/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://mkblog.info/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://mkblog.info/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://mkblog.info/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://mkblog.info/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://mkblog.info/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://mkblog.info/images/apple-touch-icon-144x144-precomposed.png">
+
+
+
+
+<style type="text/css">body {background:url(http://mkblog.info/images/demo-1-bg.jpg) no-repeat fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}</style>
+
+
+</head>
+
+<body id="post" class="feature">
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="http://mkblog.info/">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="http://mkblog.info/images/MKAvatar.jpg" alt="Mykyta Karpyshyn photo" class="author-photo">
+					<h4>Mykyta Karpyshyn</h4>
+					<p>Your bio goes here. It shouldn't be super long but a good sentence or two should suffice.</p>
+				</li>
+				<li><a href="http://mkblog.info/about/"><span class="btn btn-inverse">Learn More</span></a></li>
+				
+				
+				<li>
+					<a href="https://facebook.com/mykyta.karpyshyn"><i class="fa fa-fw fa-facebook"></i> Facebook</a>
+				</li>
+				
+				<li>
+					<a href="https://linkedin.com/in/mykyta-karpyshyn-b0466b23"><i class="fa fa-fw fa-linkedin"></i> LinkedIn</a>
+				</li>
+				
+				
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="http://mkblog.info/posts/">All Posts</a></li>
+				<li><a href="http://mkblog.info/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+<div class="entry-header">
+  <div class="entry-image">
+    <img src="http://mkblog.info/images/ios_security.jpg" alt="Security Mechanisms Provided by iOS9">
+  </div><!-- /.entry-image -->
+</div><!-- /.entry-header -->
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        
+          <h1 class="entry-title"><a href="http://mkblog.info/security-mechanisms-provided-by-ios-9/" rel="bookmark" title="Security Mechanisms Provided by iOS9">Security Mechanisms Provided by iOS9</a></h1>
+        
+        <h2><span class="entry-date date published"><time datetime="2016-05-15T00:00:00-04:00">May 15, 2016</time></span></h2>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+Reading time ~34 minutes
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <p>I hope, some of this information will protect you from making common mistakes during development for iOS9+.</p>
+
+<p>I’ll also provide a small part theoretical base of cryptography. For those who is not aware about details – it will be a good point to get new knowledge and google for new terms. For others – just to remind</p>
+<h1 id="theory--history--good-to-know">Theory &amp; History &amp; Good to know</h1>
+<p>Let’s talk about cryptography base. This science is based on <b>Integer Number Theory</b>, <b>Finite Fields</b> and <b>Probability Theory</b>.</p>
+
+<p>In current context we should also define a term – <b>Negligibility</b>.</p>
+
+<p>In crypto, we consider probabilities that are negligible to be too small to matter.  That means if an attack works only with negligible probability, then we consider that attack to be unsuccessful.</p>
+
+<p>Next term we should keep in mind – is <b>PRNG</b> – Pseudorandom number generator or Deterministic Random Bit Generator. The output PRNG sequence is not truly random. It can be implemented via software algorithms or hardware. Actually the last one can give output much more closer to truly random with higher generation speed.</p>
+
+<p>Negligibility and PRNG – is the foundation of crypto algorithms. And let’s take a look on one old method called <b>OTP</b> (One-time pad).</p>
+
+<p>The main distinct property – is using key with length equal to original text
+It is absolutely impossible to crack it if:
+<!-- more --></p>
+<ul>
+  <li>Key sequence is totally random</li>
+  <li>One key is used only once for concrete message</li>
+  <li>Key length should be equal to message length</li>
+</ul>
+
+<p>Actually, this method has several implementation problems, thus it is not popular. Two most major of them are:</p>
+<ul>
+  <li>Key distribution. Sender and Receiver should have this key before stating messaging. Also there are some related problems with authentication.</li>
+  <li>Key Length. Huge amount of secured data requires the same amount of key length.</li>
+</ul>
+
+<p>Due to described disadvantages and historical processes  two more terms were described to solve it:</p>
+<ul>
+  <li>Pseudorandom function (<b>PRF</b>)</li>
+  <li>Pseudorandom permutation (<b>PRP</b>)</li>
+</ul>
+
+<p><b>PRF</b> – we can describe as an abstract black box (with some math functions inside), which takes some input data and returns a random (very close to random) sequence. Every time we send the same message to PRF – it returns the same result. And the main point – there is no efficient algorithm to distinguish real random set and returned value.
+By the way <b>Hashes</b> and <b>MACs</b> (Message Authentication Code) are also based on PRF</p>
+
+<p><b>PRP</b> works in two directions. Having original message and some key – you can get a random sequence output (the same as PRF). But also having this key allows you to restore original text from returned pseudorandom result.</p>
+
+<p>All modern Symmetric Encryption (or Symmetric-Key) systems are based on PRP.</p>
+
+<p>Today there are a lot of successful implementations of PRP, but all of them have one very important problem, that should be solved – key exchange between sender and receiver.</p>
+
+<p>Of course if we have a protected channel with receiver, trusted storage or key was defined and shared before messaging started – it is not a problem. But these cases are not possible in modern networks. We can’t trust anyone.</p>
+
+<p>Now science community should solve the next problem:</p>
+
+<p>How can we share keys between sender and receiver using not protected channels?</p>
+
+<p>Most of the solutions today are associated with <b>Ron Rivest</b>, <b>Adi Shamir</b>, <b>Leonard Adleman</b>, well known as RSA public key encryption.
+But what about key exchange? – <b>Diffi-Hellman</b> key exchange method, in my pinion, was one of the most fantastic discovery.
+I’d like to write more about them, but I suggest you some videos from Youtube without going deep in math :)</p>
+
+<h2 id="rsa-encryption">RSA Encryption</h2>
+<iframe width="560" height="315" src="https://youtube.com/embed/vgTtHV04xRI" frameborder="0"></iframe>
+<h2 id="diffie-hellman-key-exchange">Diffie-Hellman Key Exchange</h2>
+<iframe width="560" height="315" src="https://youtube.com/embed/6NcDVERzMGw" frameborder="0"></iframe>
+
+<blockquote>
+  <p>FYI: If you want to go deeper into cryptography and cryptanalysis  – I suggest you take a look on:</p>
+  <ul>
+    <li>PKCS – Public Key Cryptography Standards</li>
+    <li>RFC – Request for Comments</li>
+    <li>Padding oracle Attack</li>
+    <li>Timing attack</li>
+  </ul>
+</blockquote>
+
+<h1 id="security-guide-overview">Security Guide overview</h1>
+<p>Comparing to previous versions of this document – we can see that Apple made a huge improvement in security area. And of course they can proud themselves and implemented best practices.</p>
+<h2 id="secure-boot-chain">Secure boot chain</h2>
+<figure>
+	<img src="http://mkblog.info/images/ios9_boot_process.png" alt="" />
+</figure>
+
+<h3 id="boot-rom">Boot ROM</h3>
+<p>ROM (Read Only Memory) contains the code that will be executed after your turn on your device. It is a <b>totally immutable</b> hardware code that was installed during chip fabrication. If we take a look into Security Guide – they call it <b>“implicitly trusted”</b>.  Boot ROM contains <b>Apple Root CA public key</b>, that is used to verify LLB (Low-Level Bootloader) is signed by Apple. If this check is passed – device will continue loading. It is the first step in the chain of trust. Going thru these steps, we can be sure next boot level is also signed by Apple.</p>
+
+<p>After LLB operations are finished and verification is passed – the next stage called iBoot starts to run the iOS Kernel (Darwin). iBoot also have it’s own verification processes related with <b>Apple SSA Server</b>, but we’ll come back to it in few moments. Now, that is interesting to know what will happen <b>if one the stages (LLB or iBoot) fails?</b>
+In this case your device will be set to <b>DFU (Device Firmware Upgrade) Mode</b>. Now you can only connect your device via cable to iTunes and restore it.</p>
+
+<p>Let’s come back to <b>System Software Authorization</b>. The main purpose of SSA – is to be sure that only Apple-signed software can be installed on a device. As any another system – iOS can contain vulnerabilities and updates with fixes are published quite often. SSA prevents devices to be downgraded to older version, as it was possible before (iOS7).</p>
+
+<p>Another interesting story – <b>how this will work if device is offline?</b> This is the moment when Apple Security Guide is silent. This is the best moment for Jailbreaking science. Of course there is some algorithm based on hash comparison with previous installed software. Anyway it’s a big topic and if you want to go deeper – I suggest you “Hacking and securing iOS Applications” of Jonathan Zdziarski.</p>
+
+<h2 id="secure-enclave">Secure Enclave</h2>
+<p>Secure Enclave – is a coprocessor for A7 CPU +. For better understanding let’s describe what does it has and what does it do:</p>
+<ul>
+  <li>Has it’s own <b>encrypted memory</b></li>
+  <li>Build-in <b>hardware PRNG</b></li>
+  <li>Provides all <b>crypto operations</b> for Data Protection key management</li>
+  <li>Can <b>communicate with processor</b> using interrupt-driven mailbox pattern (can write a message, but never read it again)</li>
+  <li>Can access to encrypted, shared with processor, memory in Read-only mode</li>
+  <li>Responsible for <b>Passcode, Touch ID, Data Protection Classes</b>.</li>
+</ul>
+
+<p>The last topic – is the most interesting. Secure enclave is responsible for keeping fingerprint and passcode data, processing and validating, enabling access for user. The interesting fact – <b>processor is forwarding data from sensors to Secure Enclave, but it cannot read it.</b></p>
+
+<p>From Apple Security Guide</p>
+
+<blockquote>
+  <p>It’s encrypted and authenticated with a session key that is negotiated using the device’s shared key that is provisioned for the Touch ID sensor and the Secure Enclave. The session key exchange uses AES key wrapping with both sides providing a random key that establishes the session key and uses AES-CCM transport encryption</p>
+</blockquote>
+
+<h2 id="hardware-accelerated-encryption">Hardware-accelerated encryption</h2>
+
+<p>Each device has a high-efficient crypto engine. It is build in between flash storage and memory. It allows to keep data on storage encrypted and load to memory very fast, without serious effect on battery and performance.
+Chip encryption is based on embedded keys – <b>UID</b> and <b>GID</b>. First one – is unique value for each device, last one – for device family. These keys are <b>not externally accessable</b>.</p>
+
+<p>From Apple Security Guide</p>
+
+<blockquote>
+  <p>The UID allows data to be cryptographically tied to a particular device. For example, the
+ key hierarchy protecting the file system includes the UID, so if the memory chips are
+ physically moved from one device to another, the files are inaccessible. The UID is not
+ related to any other identifier on the device.</p>
+</blockquote>
+
+<p>Not long time ago (iOS5, iOS6) these keys could be compromised. Patching iBoot loader on device with Jailbreak you can get memory dump from aes_decrypt() function.</p>
+
+<h1 id="file-protection">File protection</h1>
+
+<p>One of the first classes for file protection was – <b>NSFileProtectionComplete</b>. The idea was very simple: system allows you to read/write file while device in unlocked. After lock button was pressed – your app has nearly 10 seconds to finish file activities. The protection key is derived from passcode and UID. In case when passcode is not used – key will be destroyed after device lock.</p>
+
+<p>This implementation made a lot of problems for developers, especially during running long tasks in background.</p>
+
+<p>So the next solution was <b>NSFileProtectionCompleteUnlessOpen</b>. Using some different crypto implementation allows writing file until it is not closed. Even device was locked.</p>
+
+<p>Previous methods have vulnerability. In case if device was jailbreaked, after rebooting system – files can be compromised. So engineers should find the way to keep data encrypted starting from the boot moment until user will be authorized. Such class solution was called <b>NSFileProtectionCompleteUntilFirstUserAuthentication</b>. In this case files will not be available until user enters Passcode. And, of course, key is not destroyed even after rebooting, as it was in previous class. This method is default for all applications developed for iOS7+.</p>
+
+<p>One more class we can remind – <b>NSFileProtectionNone</b>.  Looking on name someone can think that files are not encrypted, but it is not really true. In this case they are encrypted using usual symmetric algorithm and key based on UID. But knowing UID and algorithms that are used – it is not a big deal to restore original data.</p>
+
+<h1 id="some-default-features-overview">Some Default Features overview</h1>
+<ul>
+  <li>Code Signing. iOS verifies digital signatures for all executable code</li>
+  <li>Sandbox. all apps are isolated from each other</li>
+  <li>Entitlements. iCloud access, push notifications, Apple Pay, App Sand Box.</li>
+  <li>ASLR. Address Space Layout Randomization.</li>
+  <li>XN. preventing executing code in memory that was not verified with digital signature. These addresses are specially marked and not executed.</li>
+  <li>Extensions. We have to keep in mind any extension has the same access level as the parent application. Excepting keyboards! Internet access is not allowed for them.</li>
+</ul>
+
+<h1 id="security-framework">Security Framework</h1>
+
+<p>This is a framework is provided by Apple with C interfaces. It contains implementation for:</p>
+<ul>
+  <li>All required encryption/decryption, digital signature, hashes algorithms</li>
+  <li>KeyChain Services API with wrappers for Swift and Objective C</li>
+  <li>Functions for managing certificates</li>
+  <li>Secure Transport. Notice, that apple still includes support of <b>SSL 3.0</b> and <b>TLS 1.0.</b> for compatibility. You have to avoid using them due to the fact they were <b>compromised!</b></li>
+</ul>
+
+<h2 id="openssl">OpenSSL</h2>
+<p>The only advise – be careful with versions that are known as vulnerable (f.e. for heartbleed attack).</p>
+
+<h1 id="keychain">Keychain</h1>
+
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="http://mkblog.info/tags/#iOS" title="Pages tagged iOS" class="tag"><span class="term">iOS</span></a><a href="http://mkblog.info/tags/#iOS9" title="Pages tagged iOS9" class="tag"><span class="term">iOS9</span></a><a href="http://mkblog.info/tags/#Security" title="Pages tagged Security" class="tag"><span class="term">Security</span></a><a href="http://mkblog.info/tags/#Objective C" title="Pages tagged Objective C" class="tag"><span class="term">Objective C</span></a><a href="http://mkblog.info/tags/#Swift" title="Pages tagged Swift" class="tag"><span class="term">Swift</span></a></span>
+        <span>Updated on <span class="entry-date date updated"><time datetime="2016-05-15 15:27:45 -0400">May 15, 2016</time></span></span>
+        <span class="author vcard"><span class="fn">Mykyta Karpyshyn</span></span>
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://mkblog.info/security-mechanisms-provided-by-ios-9/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://mkblog.info/security-mechanisms-provided-by-ios-9/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://mkblog.info/security-mechanisms-provided-by-ios-9/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
+    
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2016 Mykyta Karpyshyn</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://mkblog.info/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://mkblog.info/assets/js/scripts.min.js"></script>
+
+<script src="http://mkblog.info/assets/js/nice_header/TweenLite.min.js"></script>
+<script src="http://mkblog.info/assets/js/nice_header/EasePack.min.js"></script>
+<script src="http://mkblog.info/assets/js/nice_header/rAF.js"></script>
+<script src="http://mkblog.info/assets/js/nice_header/demo-1.js"></script>
+
+
+
+
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'mkdevblog'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	        
+
+</body>
+</html>
