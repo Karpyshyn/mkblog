@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://mkblog.info/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.0">Jekyll</generator><link href="http://mkblog.info/feed.xml" rel="self" type="application/atom+xml" /><link href="http://mkblog.info/" rel="alternate" type="text/html" /><updated>2016-10-17T10:53:32-04:00</updated><id>http://mkblog.info//</id><title type="html">Mykyta’s Karpyshyn Blog</title><subtitle>Life &amp; Engineering.</subtitle><entry><title type="html">Security Mechanisms Provided by iOS9</title><link href="http://mkblog.info/security-mechanisms-provided-by-ios-9/" rel="alternate" type="text/html" title="Security Mechanisms Provided by iOS9" /><published>2016-05-15T00:00:00-04:00</published><updated>2016-05-15T00:00:00-04:00</updated><id>http://mkblog.info/security-mechanisms-provided-by-ios-9</id><content type="html" xml:base="http://mkblog.info/security-mechanisms-provided-by-ios-9/">&lt;p&gt;I hope, some of this information will protect you from making common mistakes during development for iOS9+.
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://mkblog.info/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.0">Jekyll</generator><link href="http://mkblog.info/feed.xml" rel="self" type="application/atom+xml" /><link href="http://mkblog.info/" rel="alternate" type="text/html" /><updated>2016-10-17T11:40:05-04:00</updated><id>http://mkblog.info//</id><title type="html">Mykyta’s Karpyshyn Blog</title><subtitle>Life &amp; Engineering.</subtitle><entry><title type="html">Security Mechanisms Provided by iOS9</title><link href="http://mkblog.info/security-mechanisms-provided-by-ios-9/" rel="alternate" type="text/html" title="Security Mechanisms Provided by iOS9" /><published>2016-05-15T00:00:00-04:00</published><updated>2016-05-15T00:00:00-04:00</updated><id>http://mkblog.info/security-mechanisms-provided-by-ios-9</id><content type="html" xml:base="http://mkblog.info/security-mechanisms-provided-by-ios-9/">&lt;p&gt;I hope, some of this information will protect you from making common mistakes during development for iOS9+.
 You will not find here any detailed instructions. But some topics can stimulate you to go deep with new knowledge.&lt;/p&gt;
 
-&lt;p&gt;I’ll also provide a small part theoretical base of cryptography. For those who is not aware about details – it will be a good point to get new knowledge and google for new terms. For others – just to remind&lt;/p&gt;
+&lt;p&gt;I’ll also provide a small part theoretical base of cryptography. For those who is not aware about details – it will be a good point to get new knowledge and google for new terms. For others – just to remind.&lt;/p&gt;
 &lt;h1 id=&quot;theory--history--good-to-know&quot;&gt;Theory &amp;amp; History &amp;amp; Good to know&lt;/h1&gt;
 &lt;p&gt;Let’s talk about cryptography base. This science is based on &lt;b&gt;Integer Number Theory&lt;/b&gt;, &lt;b&gt;Finite Fields&lt;/b&gt; and &lt;b&gt;Probability Theory&lt;/b&gt;.&lt;/p&gt;
 
@@ -13,18 +13,19 @@ You will not find here any detailed instructions. But some topics can stimulate 
 
 &lt;p&gt;Negligibility and PRNG – is the foundation of crypto algorithms. And let’s take a look on one old method called &lt;b&gt;OTP&lt;/b&gt; (One-time pad).&lt;/p&gt;
 
-&lt;p&gt;The main distinct property – is using key with length equal to original text
-It is absolutely impossible to crack it if:
+&lt;p&gt;The main distinct property – is using key with length equal to original text.&lt;/p&gt;
+
+&lt;p&gt;It is absolutely impossible to crack it if:
 &lt;!-- more --&gt;&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Key sequence is totally random&lt;/li&gt;
-  &lt;li&gt;One key is used only once for concrete message&lt;/li&gt;
-  &lt;li&gt;Key length should be equal to message length&lt;/li&gt;
+  &lt;li&gt;Key sequence is totally random.&lt;/li&gt;
+  &lt;li&gt;One key is used only once for concrete message.&lt;/li&gt;
+  &lt;li&gt;Key length should be equal to message length.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Actually, this method has several implementation problems, thus it is not popular. Two most major of them are:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Key distribution. Sender and Receiver should have this key before stating messaging. Also there are some related problems with authentication.&lt;/li&gt;
+  &lt;li&gt;Key distribution. Sender and Receiver should have this key before starting messaging. Also there are some related problems with authentication.&lt;/li&gt;
   &lt;li&gt;Key Length. Huge amount of secured data requires the same amount of key length.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -210,5 +211,5 @@ Another very important requirement is:&lt;/p&gt;
   &lt;li&gt;Implement MFA (Multi Factor Authentication)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;I hope you have found some useful topics in this article. And going deep into any of them will help you to create amazing things.&lt;/p&gt;</content><category term="iOS" /><category term="iOS9" /><category term="Security" /><category term="Objective C" /><category term="Swift" /><summary type="html">I hope, some of this information will protect you from making common mistakes during development for iOS9+.
+&lt;p&gt;I hope you have found some useful topics in this article. And going deep into any of them will help you to create amazing things.&lt;/p&gt;</content><category term="iOS" /><category term="iOS9" /><category term="Security" /><category term="Objective C" /><category term="Swift" /><category term="Secure Enclave" /><category term="PRNG" /><category term="Keychain" /><category term="App Transport Security" /><summary type="html">I hope, some of this information will protect you from making common mistakes during development for iOS9+.
 You will not find here any detailed instructions. But some topics can stimulate you to go deep with new knowledge.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://mkblog.info/%7B%22feature%22=%3E%22ios_security.jpg%22%7D" /></entry></feed>
