@@ -123,13 +123,14 @@
         <p class="entry-reading-time">
           <i class="fa fa-clock-o"></i>
           
-Reading time ~34 minutes
+Reading time ~45 minutes
         </p><!-- /.entry-reading-time -->
         
       </div><!-- /.header-title-wrap -->
     </header>
     <div class="entry-content">
-      <p>I hope, some of this information will protect you from making common mistakes during development for iOS9+.</p>
+      <p>I hope, some of this information will protect you from making common mistakes during development for iOS9+.
+You will not find here any detailed instructions. But some topics can stimulate you to go deep with new knowledge.</p>
 
 <p>I’ll also provide a small part theoretical base of cryptography. For those who is not aware about details – it will be a good point to get new knowledge and google for new terms. For others – just to remind</p>
 <h1 id="theory--history--good-to-know">Theory &amp; History &amp; Good to know</h1>
@@ -286,6 +287,61 @@ Chip encryption is based on embedded keys – <b>UID</b> and <b>GID</b>. First o
 <p>The only advise – be careful with versions that are known as vulnerable (f.e. for heartbleed attack).</p>
 
 <h1 id="keychain">Keychain</h1>
+
+<p>Keychain – is a centralized encrypted storage that was designed mostly for storing sensitive data like usernames, passwords, access tokens certificates, with attached public and private keys. The basic engine – is SQLite database.
+Also keychain can be used for sharing data between applications. Another useful case - is to keep data after application deletion.
+Group access to keychain data became possible after introducing Keychain-Access-Groups. Applications with the same keychain access group entitlement can access items.</p>
+
+<h2 id="keychain-protection-types">Keychain Protection Types</h2>
+<p>Some of the keychain protection types are similar to file.
+First one is <b>kSecAttrAccessibleWhenUnlocked</b>. It works in similar way as NSFileProtectionComplete. You cannot have any access to item until you’ll unlock your device.
+<b>kSecAttrAccessibleAfterFirstUnlock</b> – analog of NSFileProtectionCompleteUntilFirstUserAuthentication. Any access is closed until user will enter passcode after rebooting.
+<b>kSecAttrAccessibleAlways</b> – I even can’t add anything. Everything is describes in name.
+I’d like to pay attention on interesting type called <b>kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly</b>. It is used when your app is <b>using iCloud</b>. Also it works only if <b>passcode enabled</b>. This protection type means you provide access to items only from current device.</p>
+
+<h1 id="app-transport-security">App Transport Security</h1>
+
+<p>There are several reasons why Apple strictly enforce developers to design their apps with these new requirements.
+One of the main important points is that two versions of TLS Protocol (1.0, 1.1) were compromised. Thus now the minimal allowed TLS version is 1.2.
+Another requirement is related to server certificate.
+From Apple Develop site</p>
+
+<blockquote>
+  <p>The X.509 digital server certificate must meet at least one of the following trust requirements:</p>
+  <ul>
+    <li>Issued by a certificate authority (CA) whose root certificate is incorporated into the operating system</li>
+    <li>Issued by a trusted root CA and installed by the user or a system administrator</li>
+  </ul>
+</blockquote>
+
+<p>Also using of non-compromised block/stream ciphers, like AES-128, AES-256.
+For hashed used for MACs (Message Authentication Codes) – SHA2 family.</p>
+
+<p>Requirements for RSA: key length is minimum 2048. In case of using ECDSA for digital signatures – 256 bit.
+Another very important requirement is:</p>
+
+<p>The negotiated TLS connection cipher suite must support perfect forward secrecy (PFS) through Elliptic Curve Diffie-Hellman Ephemeral (ECDHE) key exchange</p>
+
+<p>If you want to learn more about requirements – welcome on page https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW35</p>
+
+<h1 id="some-advises">Some Advises</h1>
+
+<ul>
+  <li>Never use a password or hash as an encryption key</li>
+  <li>Do not keep keys in your app, even in RAM</li>
+  <li>Use PBKDF2 function with a lot of iterations</li>
+  <li>Add your own encryption logic and salt</li>
+  <li>Do not send unencrypted or weakly encrypted passwords anywhere</li>
+  <li>Avoid keeping tokens. Configure them to minimal live time as possible</li>
+  <li>Notify user when he or someone else were using his credentials to log in. In both successful and unsuccessful ways</li>
+  <li>To block debugging your app -  use ptrace() in you code</li>
+  <li>Clear your pasteboard when app goes to background mode</li>
+  <li>Turn off spelling check in all fields where sensitive data can be placed</li>
+  <li>Enforce users to create complex passwords</li>
+  <li>Implement MFA (Multi Factor Authentication)</li>
+</ul>
+
+<p>I hope you have found some useful topics in this article. And going deep into any of them will help you to create amazing things.</p>
 
       <footer class="entry-meta">
         <span class="entry-tags"><a href="http://mkblog.info/tags/#iOS" title="Pages tagged iOS" class="tag"><span class="term">iOS</span></a><a href="http://mkblog.info/tags/#iOS9" title="Pages tagged iOS9" class="tag"><span class="term">iOS9</span></a><a href="http://mkblog.info/tags/#Security" title="Pages tagged Security" class="tag"><span class="term">Security</span></a><a href="http://mkblog.info/tags/#Objective C" title="Pages tagged Objective C" class="tag"><span class="term">Objective C</span></a><a href="http://mkblog.info/tags/#Swift" title="Pages tagged Swift" class="tag"><span class="term">Swift</span></a></span>

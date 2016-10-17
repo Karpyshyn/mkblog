@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://mkblog.info/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.0">Jekyll</generator><link href="http://mkblog.info/feed.xml" rel="self" type="application/atom+xml" /><link href="http://mkblog.info/" rel="alternate" type="text/html" /><updated>2016-10-14T09:04:21-04:00</updated><id>http://mkblog.info//</id><title type="html">Mykyta’s Karpyshyn Blog</title><subtitle>Life &amp; Engineering.</subtitle><entry><title type="html">Security Mechanisms Provided by iOS9</title><link href="http://mkblog.info/security-mechanisms-provided-by-ios-9/" rel="alternate" type="text/html" title="Security Mechanisms Provided by iOS9" /><published>2016-05-15T00:00:00-04:00</published><updated>2016-05-15T00:00:00-04:00</updated><id>http://mkblog.info/security-mechanisms-provided-by-ios-9</id><content type="html" xml:base="http://mkblog.info/security-mechanisms-provided-by-ios-9/">&lt;p&gt;I hope, some of this information will protect you from making common mistakes during development for iOS9+.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://mkblog.info/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.0">Jekyll</generator><link href="http://mkblog.info/feed.xml" rel="self" type="application/atom+xml" /><link href="http://mkblog.info/" rel="alternate" type="text/html" /><updated>2016-10-17T10:53:32-04:00</updated><id>http://mkblog.info//</id><title type="html">Mykyta’s Karpyshyn Blog</title><subtitle>Life &amp; Engineering.</subtitle><entry><title type="html">Security Mechanisms Provided by iOS9</title><link href="http://mkblog.info/security-mechanisms-provided-by-ios-9/" rel="alternate" type="text/html" title="Security Mechanisms Provided by iOS9" /><published>2016-05-15T00:00:00-04:00</published><updated>2016-05-15T00:00:00-04:00</updated><id>http://mkblog.info/security-mechanisms-provided-by-ios-9</id><content type="html" xml:base="http://mkblog.info/security-mechanisms-provided-by-ios-9/">&lt;p&gt;I hope, some of this information will protect you from making common mistakes during development for iOS9+.
+You will not find here any detailed instructions. But some topics can stimulate you to go deep with new knowledge.&lt;/p&gt;
 
 &lt;p&gt;I’ll also provide a small part theoretical base of cryptography. For those who is not aware about details – it will be a good point to get new knowledge and google for new terms. For others – just to remind&lt;/p&gt;
 &lt;h1 id=&quot;theory--history--good-to-know&quot;&gt;Theory &amp;amp; History &amp;amp; Good to know&lt;/h1&gt;
@@ -154,4 +155,60 @@ Chip encryption is based on embedded keys – &lt;b&gt;UID&lt;/b&gt; and &lt;b&g
 &lt;h2 id=&quot;openssl&quot;&gt;OpenSSL&lt;/h2&gt;
 &lt;p&gt;The only advise – be careful with versions that are known as vulnerable (f.e. for heartbleed attack).&lt;/p&gt;
 
-&lt;h1 id=&quot;keychain&quot;&gt;Keychain&lt;/h1&gt;</content><category term="iOS" /><category term="iOS9" /><category term="Security" /><category term="Objective C" /><category term="Swift" /><summary type="html">I hope, some of this information will protect you from making common mistakes during development for iOS9+.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://mkblog.info/%7B%22feature%22=%3E%22ios_security.jpg%22%7D" /></entry></feed>
+&lt;h1 id=&quot;keychain&quot;&gt;Keychain&lt;/h1&gt;
+
+&lt;p&gt;Keychain – is a centralized encrypted storage that was designed mostly for storing sensitive data like usernames, passwords, access tokens certificates, with attached public and private keys. The basic engine – is SQLite database.
+Also keychain can be used for sharing data between applications. Another useful case - is to keep data after application deletion.
+Group access to keychain data became possible after introducing Keychain-Access-Groups. Applications with the same keychain access group entitlement can access items.&lt;/p&gt;
+
+&lt;h2 id=&quot;keychain-protection-types&quot;&gt;Keychain Protection Types&lt;/h2&gt;
+&lt;p&gt;Some of the keychain protection types are similar to file.
+First one is &lt;b&gt;kSecAttrAccessibleWhenUnlocked&lt;/b&gt;. It works in similar way as NSFileProtectionComplete. You cannot have any access to item until you’ll unlock your device.
+&lt;b&gt;kSecAttrAccessibleAfterFirstUnlock&lt;/b&gt; – analog of NSFileProtectionCompleteUntilFirstUserAuthentication. Any access is closed until user will enter passcode after rebooting.
+&lt;b&gt;kSecAttrAccessibleAlways&lt;/b&gt; – I even can’t add anything. Everything is describes in name.
+I’d like to pay attention on interesting type called &lt;b&gt;kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly&lt;/b&gt;. It is used when your app is &lt;b&gt;using iCloud&lt;/b&gt;. Also it works only if &lt;b&gt;passcode enabled&lt;/b&gt;. This protection type means you provide access to items only from current device.&lt;/p&gt;
+
+&lt;h1 id=&quot;app-transport-security&quot;&gt;App Transport Security&lt;/h1&gt;
+
+&lt;p&gt;There are several reasons why Apple strictly enforce developers to design their apps with these new requirements.
+One of the main important points is that two versions of TLS Protocol (1.0, 1.1) were compromised. Thus now the minimal allowed TLS version is 1.2.
+Another requirement is related to server certificate.
+From Apple Develop site&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The X.509 digital server certificate must meet at least one of the following trust requirements:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Issued by a certificate authority (CA) whose root certificate is incorporated into the operating system&lt;/li&gt;
+    &lt;li&gt;Issued by a trusted root CA and installed by the user or a system administrator&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Also using of non-compromised block/stream ciphers, like AES-128, AES-256.
+For hashed used for MACs (Message Authentication Codes) – SHA2 family.&lt;/p&gt;
+
+&lt;p&gt;Requirements for RSA: key length is minimum 2048. In case of using ECDSA for digital signatures – 256 bit.
+Another very important requirement is:&lt;/p&gt;
+
+&lt;p&gt;The negotiated TLS connection cipher suite must support perfect forward secrecy (PFS) through Elliptic Curve Diffie-Hellman Ephemeral (ECDHE) key exchange&lt;/p&gt;
+
+&lt;p&gt;If you want to learn more about requirements – welcome on page https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW35&lt;/p&gt;
+
+&lt;h1 id=&quot;some-advises&quot;&gt;Some Advises&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Never use a password or hash as an encryption key&lt;/li&gt;
+  &lt;li&gt;Do not keep keys in your app, even in RAM&lt;/li&gt;
+  &lt;li&gt;Use PBKDF2 function with a lot of iterations&lt;/li&gt;
+  &lt;li&gt;Add your own encryption logic and salt&lt;/li&gt;
+  &lt;li&gt;Do not send unencrypted or weakly encrypted passwords anywhere&lt;/li&gt;
+  &lt;li&gt;Avoid keeping tokens. Configure them to minimal live time as possible&lt;/li&gt;
+  &lt;li&gt;Notify user when he or someone else were using his credentials to log in. In both successful and unsuccessful ways&lt;/li&gt;
+  &lt;li&gt;To block debugging your app -  use ptrace() in you code&lt;/li&gt;
+  &lt;li&gt;Clear your pasteboard when app goes to background mode&lt;/li&gt;
+  &lt;li&gt;Turn off spelling check in all fields where sensitive data can be placed&lt;/li&gt;
+  &lt;li&gt;Enforce users to create complex passwords&lt;/li&gt;
+  &lt;li&gt;Implement MFA (Multi Factor Authentication)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I hope you have found some useful topics in this article. And going deep into any of them will help you to create amazing things.&lt;/p&gt;</content><category term="iOS" /><category term="iOS9" /><category term="Security" /><category term="Objective C" /><category term="Swift" /><summary type="html">I hope, some of this information will protect you from making common mistakes during development for iOS9+.
+You will not find here any detailed instructions. But some topics can stimulate you to go deep with new knowledge.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://mkblog.info/%7B%22feature%22=%3E%22ios_security.jpg%22%7D" /></entry></feed>
