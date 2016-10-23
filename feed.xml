@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://mkblog.info/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.0">Jekyll</generator><link href="http://mkblog.info/feed.xml" rel="self" type="application/atom+xml" /><link href="http://mkblog.info/" rel="alternate" type="text/html" /><updated>2016-10-18T19:48:01-04:00</updated><id>http://mkblog.info//</id><title type="html">Mykyta’s Karpyshyn Blog</title><subtitle>Life &amp; Engineering.</subtitle><entry><title type="html">Security Mechanisms Provided by iOS9</title><link href="http://mkblog.info/security-mechanisms-provided-by-ios-9/" rel="alternate" type="text/html" title="Security Mechanisms Provided by iOS9" /><published>2016-05-15T00:00:00-04:00</published><updated>2016-05-15T00:00:00-04:00</updated><id>http://mkblog.info/security-mechanisms-provided-by-ios-9</id><content type="html" xml:base="http://mkblog.info/security-mechanisms-provided-by-ios-9/">&lt;p&gt;I hope, some of this information will protect you from making common mistakes during development for iOS9+.
-You will not find here any detailed instructions. But some topics can stimulate you to go deep with new knowledge.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://mkblog.info/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.0">Jekyll</generator><link href="http://mkblog.info/feed.xml" rel="self" type="application/atom+xml" /><link href="http://mkblog.info/" rel="alternate" type="text/html" /><updated>2016-10-23T16:27:24-04:00</updated><id>http://mkblog.info//</id><title type="html">Mykyta’s Karpyshyn Blog</title><subtitle>Life &amp; Engineering.</subtitle><entry><title type="html">Security Mechanisms Provided by iOS9</title><link href="http://mkblog.info/security-mechanisms-provided-by-ios-9/" rel="alternate" type="text/html" title="Security Mechanisms Provided by iOS9" /><published>2016-05-15T00:00:00-04:00</published><updated>2016-05-15T00:00:00-04:00</updated><id>http://mkblog.info/security-mechanisms-provided-by-ios-9</id><content type="html" xml:base="http://mkblog.info/security-mechanisms-provided-by-ios-9/">&lt;p&gt;I hope, some of this information will protect you from making common mistakes during development for iOS9+.
+You will not find here any detailed instructions. But some topics can stimulate you to go deep within new knowledge.&lt;/p&gt;
 
-&lt;p&gt;I’ll also provide a small part theoretical base of cryptography. For those who is not aware about details – it will be a good point to get new knowledge and google for new terms. For others – just to remind.&lt;/p&gt;
+&lt;p&gt;I’ll also provide a small part of theoretical base of cryptography. For those who are not aware about details – it will be a good point to get new knowledge and google for new terms. For others – just to refresh.&lt;/p&gt;
 &lt;h1 id=&quot;theory--history--good-to-know&quot;&gt;Theory &amp;amp; History &amp;amp; Good to know&lt;/h1&gt;
 &lt;p&gt;Let’s talk about cryptography base. This science is based on &lt;b&gt;Integer Number Theory&lt;/b&gt;, &lt;b&gt;Finite Fields&lt;/b&gt; and &lt;b&gt;Probability Theory&lt;/b&gt;.&lt;/p&gt;
 
@@ -9,7 +9,7 @@ You will not find here any detailed instructions. But some topics can stimulate 
 
 &lt;p&gt;In crypto, we consider probabilities that are negligible to be too small to matter.  That means if an attack works only with negligible probability, then we consider that attack to be unsuccessful.&lt;/p&gt;
 
-&lt;p&gt;Next term we should keep in mind – is &lt;b&gt;PRNG&lt;/b&gt; – Pseudorandom number generator or Deterministic Random Bit Generator. The output PRNG sequence is not truly random. It can be implemented via software algorithms or hardware. Actually the last one can give output much more closer to truly random with higher generation speed.&lt;/p&gt;
+&lt;p&gt;Next term we should keep in mind – is &lt;b&gt;PRNG&lt;/b&gt; – Pseudorandom number generator or Deterministic Random Bit Generator. The output of PRNG sequence is not truly random. It can be implemented via software algorithms or hardware. Actually the last one can give output much more closer to truly random with higher generation speed.&lt;/p&gt;
 
 &lt;p&gt;Negligibility and PRNG – is the foundation of crypto algorithms. And let’s take a look on one old method called &lt;b&gt;OTP&lt;/b&gt; (One-time pad).&lt;/p&gt;
 
@@ -23,7 +23,7 @@ You will not find here any detailed instructions. But some topics can stimulate 
   &lt;li&gt;Key length should be equal to message length.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Actually, this method has several implementation problems, thus it is not popular. Two most major of them are:&lt;/p&gt;
+&lt;p&gt;Actually, this method has several implementation problems, thus it is not popular. Two  major ones  are:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Key distribution. Sender and Receiver should have this key before starting messaging. Also there are some related problems with authentication.&lt;/li&gt;
   &lt;li&gt;Key Length. Huge amount of secured data requires the same amount of key length.&lt;/li&gt;
@@ -35,10 +35,10 @@ You will not find here any detailed instructions. But some topics can stimulate 
   &lt;li&gt;Pseudorandom permutation (&lt;b&gt;PRP&lt;/b&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;b&gt;PRF&lt;/b&gt; – we can describe as an abstract black box (with some math functions inside), which takes some input data and returns a random (very close to random) sequence. Every time we send the same message to PRF – it returns the same result. And the main point – there is no efficient algorithm to distinguish real random set and returned value.
+&lt;p&gt;&lt;b&gt;PRF&lt;/b&gt; – we can describe as an abstract black box (with some math functions inside), which takes some input data and returns a random (very close to random) sequence. Every time we send the same message to PRF – it returns the same result. And the main point – there is no efficient algorithm to distinguish real random set and the returned value.
 By the way &lt;b&gt;Hashes&lt;/b&gt; and &lt;b&gt;MACs&lt;/b&gt; (Message Authentication Code) are also based on PRF&lt;/p&gt;
 
-&lt;p&gt;&lt;b&gt;PRP&lt;/b&gt; works in two directions. Having original message and some key – you can get a random sequence output (the same as PRF). But also having this key allows you to restore original text from returned pseudorandom result.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;PRP&lt;/b&gt; works in two directions. Having original message and a key – you can get a random sequence output (the same as PRF). But also having this key allows you to restore original text from returned pseudorandom result.&lt;/p&gt;
 
 &lt;p&gt;All modern Symmetric Encryption (or Symmetric-Key) systems are based on PRP.&lt;/p&gt;
 
@@ -46,13 +46,13 @@ By the way &lt;b&gt;Hashes&lt;/b&gt; and &lt;b&gt;MACs&lt;/b&gt; (Message Authen
 
 &lt;p&gt;Of course if we have a protected channel with receiver, trusted storage or key was defined and shared before messaging started – it is not a problem. But these cases are not possible in modern networks. We can’t trust anyone.&lt;/p&gt;
 
-&lt;p&gt;Now science community should solve the next problem:&lt;/p&gt;
+&lt;p&gt;Now science community should solve the next-following problem:&lt;/p&gt;
 
 &lt;p&gt;How can we share keys between sender and receiver using not protected channels?&lt;/p&gt;
 
 &lt;p&gt;Most of the solutions today are associated with &lt;b&gt;Ron Rivest&lt;/b&gt;, &lt;b&gt;Adi Shamir&lt;/b&gt;, &lt;b&gt;Leonard Adleman&lt;/b&gt;, well known as RSA public key encryption.
-But what about key exchange? – &lt;b&gt;Diffi-Hellman&lt;/b&gt; key exchange method, in my pinion, was one of the most fantastic discovery.
-I’d like to write more about them, but I suggest you some videos from Youtube without going deep in math :)&lt;/p&gt;
+But what about key exchange? – &lt;b&gt;Diffi-Hellman&lt;/b&gt; key exchange method, in my opinion, was one of the greatest discoveries.
+I’d like to write more about them, but but I would rather suggest you to watch some videos on  Youtube without going deep in math :)&lt;/p&gt;
 
 &lt;h2 id=&quot;rsa-encryption&quot;&gt;RSA Encryption&lt;/h2&gt;
 &lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://youtube.com/embed/vgTtHV04xRI&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
@@ -70,34 +70,34 @@ I’d like to write more about them, but I suggest you some videos from Youtube 
 &lt;/blockquote&gt;
 
 &lt;h1 id=&quot;security-guide-overview&quot;&gt;Security Guide overview&lt;/h1&gt;
-&lt;p&gt;Comparing to previous versions of this document – we can see that Apple made a huge improvement in security area. And of course they can proud themselves and implemented best practices.&lt;/p&gt;
+&lt;p&gt;Comparing to previous versions of this document – we can see that Apple made a huge improvement in the security area. And of course they can be proud of themselves for implementing best practices.&lt;/p&gt;
 &lt;h2 id=&quot;secure-boot-chain&quot;&gt;Secure boot chain&lt;/h2&gt;
 &lt;figure&gt;
 	&lt;img src=&quot;http://mkblog.info/images/ios9_boot_process.png&quot; alt=&quot;&quot; /&gt;
 &lt;/figure&gt;
 
 &lt;h3 id=&quot;boot-rom&quot;&gt;Boot ROM&lt;/h3&gt;
-&lt;p&gt;ROM (Read Only Memory) contains the code that will be executed after your turn on your device. It is a &lt;b&gt;totally immutable&lt;/b&gt; hardware code that was installed during chip fabrication. If we take a look into Security Guide – they call it &lt;b&gt;“implicitly trusted”&lt;/b&gt;.  Boot ROM contains &lt;b&gt;Apple Root CA public key&lt;/b&gt;, that is used to verify LLB (Low-Level Bootloader) is signed by Apple. If this check is passed – device will continue loading. It is the first step in the chain of trust. Going thru these steps, we can be sure next boot level is also signed by Apple.&lt;/p&gt;
+&lt;p&gt;ROM (Read Only Memory) contains the code that will be executed after your turn on your device. It is a &lt;b&gt;totally immutable&lt;/b&gt; hardware code that was installed during chip fabrication. If we take a look into Security Guide – they call it &lt;b&gt;“implicitly trusted”&lt;/b&gt;.  Boot ROM contains &lt;b&gt;Apple Root CA public key&lt;/b&gt;, used to verify LLB (Low-Level Bootloader) is signed by Apple. If this check is passed – device will continue loading. It is the first step in the chain of trust. Going thru these steps, we can be sure the next boot level is also signed by Apple.&lt;/p&gt;
 
-&lt;p&gt;After LLB operations are finished and verification is passed – the next stage called iBoot starts to run the iOS Kernel (Darwin). iBoot also have it’s own verification processes related with &lt;b&gt;Apple SSA Server&lt;/b&gt;, but we’ll come back to it in few moments. Now, that is interesting to know what will happen &lt;b&gt;if one the stages (LLB or iBoot) fails?&lt;/b&gt;
+&lt;p&gt;After LLB operations are finished and verification is passed – the next stage called iBoot starts to run the iOS Kernel (Darwin). iBoot also have its own verification processes related with &lt;b&gt;Apple SSA Server&lt;/b&gt;, but we’ll come back to it in few moments. Now, it is interesting to know what will happen &lt;b&gt;if one of the stages (LLB or iBoot) fails?&lt;/b&gt;
 In this case your device will be set to &lt;b&gt;DFU (Device Firmware Upgrade) Mode&lt;/b&gt;. Now you can only connect your device via cable to iTunes and restore it.&lt;/p&gt;
 
-&lt;p&gt;Let’s come back to &lt;b&gt;System Software Authorization&lt;/b&gt;. The main purpose of SSA – is to be sure that only Apple-signed software can be installed on a device. As any another system – iOS can contain vulnerabilities and updates with fixes are published quite often. SSA prevents devices to be downgraded to older version, as it was possible before (iOS7).&lt;/p&gt;
+&lt;p&gt;Let’s come back to the &lt;b&gt;System Software Authorization&lt;/b&gt;. The main purpose of SSA – is to be sure that only Apple-signed software can be installed on a device. As any another system – iOS can contain vulnerabilities and updates with fixes that are published quite often. SSA prevents devices to be downgraded to older version, as it was possible before (iOS7).&lt;/p&gt;
 
-&lt;p&gt;Another interesting story – &lt;b&gt;how this will work if device is offline?&lt;/b&gt; This is the moment when Apple Security Guide is silent. This is the best moment for Jailbreaking science. Of course there is some algorithm based on hash comparison with previous installed software. Anyway it’s a big topic and if you want to go deeper – I suggest you “Hacking and securing iOS Applications” of Jonathan Zdziarski.&lt;/p&gt;
+&lt;p&gt;Another interesting story – &lt;b&gt;how this will work if device is offline?&lt;/b&gt; This is the moment when Apple Security Guide is silent. This is the best moment for Jailbreaking science. Of course there is some algorithm based on hash comparison with  the previously installed software. Anyway it’s a big topic and if you want to go deeper – I suggest you to read “Hacking and securing iOS Applications” of Jonathan Zdziarski.&lt;/p&gt;
 
 &lt;h2 id=&quot;secure-enclave&quot;&gt;Secure Enclave&lt;/h2&gt;
-&lt;p&gt;Secure Enclave – is a coprocessor for A7 CPU +. For better understanding let’s describe what does it has and what does it do:&lt;/p&gt;
+&lt;p&gt;Secure Enclave – is a coprocessor for A7 CPU +. For better understanding let’s describe what it has and what it does:&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Has it’s own &lt;b&gt;encrypted memory&lt;/b&gt;&lt;/li&gt;
+  &lt;li&gt;Has its own &lt;b&gt;encrypted memory&lt;/b&gt;&lt;/li&gt;
   &lt;li&gt;Build-in &lt;b&gt;hardware PRNG&lt;/b&gt;&lt;/li&gt;
   &lt;li&gt;Provides all &lt;b&gt;crypto operations&lt;/b&gt; for Data Protection key management&lt;/li&gt;
   &lt;li&gt;Can &lt;b&gt;communicate with processor&lt;/b&gt; using interrupt-driven mailbox pattern (can write a message, but never read it again)&lt;/li&gt;
-  &lt;li&gt;Can access to encrypted, shared with processor, memory in Read-only mode&lt;/li&gt;
+  &lt;li&gt;Can access to the encrypted, shared with processor, memory in Read-only mode&lt;/li&gt;
   &lt;li&gt;Responsible for &lt;b&gt;Passcode, Touch ID, Data Protection Classes&lt;/b&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;The last topic – is the most interesting. Secure enclave is responsible for keeping fingerprint and passcode data, processing and validating, enabling access for user. The interesting fact – &lt;b&gt;processor is forwarding data from sensors to Secure Enclave, but it cannot read it.&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;The last topic – is the most interesting one. Secure enclave is responsible for keeping fingerprint and passcode data, processing and validating, and enabling access for user. The interesting fact – &lt;b&gt;processor is forwarding data from sensors to Secure Enclave, but it cannot read it.&lt;/b&gt;&lt;/p&gt;
 
 &lt;p&gt;From Apple Security Guide&lt;/p&gt;
 
@@ -107,8 +107,8 @@ In this case your device will be set to &lt;b&gt;DFU (Device Firmware Upgrade) M
 
 &lt;h2 id=&quot;hardware-accelerated-encryption&quot;&gt;Hardware-accelerated encryption&lt;/h2&gt;
 
-&lt;p&gt;Each device has a high-efficient crypto engine. It is build in between flash storage and memory. It allows to keep data on storage encrypted and load to memory very fast, without serious effect on battery and performance.
-Chip encryption is based on embedded keys – &lt;b&gt;UID&lt;/b&gt; and &lt;b&gt;GID&lt;/b&gt;. First one – is unique value for each device, last one – for device family. These keys are &lt;b&gt;not externally accessable&lt;/b&gt;.&lt;/p&gt;
+&lt;p&gt;Each device has a high-efficient crypto engine. It is built in between flash storage and memory. It allows to keep data on storage encrypted and load to memory very fast, without serious effect on battery and performance.
+Chip encryption is based on embedded keys – &lt;b&gt;UID&lt;/b&gt; and &lt;b&gt;GID&lt;/b&gt;. First one – is unique value for each device, last one – for device family. These keys are &lt;b&gt;not externally accessible&lt;/b&gt;.&lt;/p&gt;
 
 &lt;p&gt;From Apple Security Guide&lt;/p&gt;
 
@@ -119,19 +119,19 @@ Chip encryption is based on embedded keys – &lt;b&gt;UID&lt;/b&gt; and &lt;b&g
  related to any other identifier on the device.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Not long time ago (iOS5, iOS6) these keys could be compromised. Patching iBoot loader on device with Jailbreak you can get memory dump from aes_decrypt() function.&lt;/p&gt;
+&lt;p&gt;Not so long ago (iOS5, iOS6) these keys could be compromised. Patching iBoot loader on device with Jailbreak you can get memory dump from aes_decrypt() function.&lt;/p&gt;
 
 &lt;h1 id=&quot;file-protection&quot;&gt;File protection&lt;/h1&gt;
 
-&lt;p&gt;One of the first classes for file protection was – &lt;b&gt;NSFileProtectionComplete&lt;/b&gt;. The idea was very simple: system allows you to read/write file while device in unlocked. After lock button was pressed – your app has nearly 10 seconds to finish file activities. The protection key is derived from passcode and UID. In case when passcode is not used – key will be destroyed after device lock.&lt;/p&gt;
+&lt;p&gt;One of the first classes for file protection was – &lt;b&gt;NSFileProtectionComplete&lt;/b&gt;. The idea was very simple: system allows you to read/write file while device in unlocked. After lock button is pressed – your app has nearly 10 seconds to finish file activities. The protection key is derived from passcode and UID. In case when the passcode is not used – key will be destroyed after device lock.&lt;/p&gt;
 
-&lt;p&gt;This implementation made a lot of problems for developers, especially during running long tasks in background.&lt;/p&gt;
+&lt;p&gt;This implementation made a lot of problems for developers, especially during running long tasks in the background.&lt;/p&gt;
 
 &lt;p&gt;So the next solution was &lt;b&gt;NSFileProtectionCompleteUnlessOpen&lt;/b&gt;. Using some different crypto implementation allows writing file until it is not closed. Even device was locked.&lt;/p&gt;
 
-&lt;p&gt;Previous methods have vulnerability. In case if device was jailbreaked, after rebooting system – files can be compromised. So engineers should find the way to keep data encrypted starting from the boot moment until user will be authorized. Such class solution was called &lt;b&gt;NSFileProtectionCompleteUntilFirstUserAuthentication&lt;/b&gt;. In this case files will not be available until user enters Passcode. And, of course, key is not destroyed even after rebooting, as it was in previous class. This method is default for all applications developed for iOS7+.&lt;/p&gt;
+&lt;p&gt;Previous methods have vulnerability. In case when device was jailbreaked, after rebooting system – files can be compromised. So engineers should find the way to keep data encrypted starting from the boot moment until user will be authorized. Such class solution was called &lt;b&gt;NSFileProtectionCompleteUntilFirstUserAuthentication&lt;/b&gt;. In this case files will not be available until user enters Passcode. And, of course, key is not destroyed even after rebooting, as it was in previous class. This method is default for all applications developed for iOS7+.&lt;/p&gt;
 
-&lt;p&gt;One more class we can remind – &lt;b&gt;NSFileProtectionNone&lt;/b&gt;.  Looking on name someone can think that files are not encrypted, but it is not really true. In this case they are encrypted using usual symmetric algorithm and key based on UID. But knowing UID and algorithms that are used – it is not a big deal to restore original data.&lt;/p&gt;
+&lt;p&gt;One more class we can remind – &lt;b&gt;NSFileProtectionNone&lt;/b&gt;.  The name itself can make you think are not encrypted, but it is not really true. In this case they are encrypted using usual symmetric algorithm and key based on UID. But knowing UID and algorithms that are used – it is not a big deal to restore original data.&lt;/p&gt;
 
 &lt;h1 id=&quot;some-default-features-overview&quot;&gt;Some Default Features overview&lt;/h1&gt;
 &lt;ul&gt;
@@ -145,7 +145,7 @@ Chip encryption is based on embedded keys – &lt;b&gt;UID&lt;/b&gt; and &lt;b&g
 
 &lt;h1 id=&quot;security-framework&quot;&gt;Security Framework&lt;/h1&gt;
 
-&lt;p&gt;This is a framework is provided by Apple with C interfaces. It contains implementation for:&lt;/p&gt;
+&lt;p&gt;This framework is provided by Apple with C interfaces. It contains implementation for:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;All required encryption/decryption, digital signature, hashes algorithms&lt;/li&gt;
   &lt;li&gt;KeyChain Services API with wrappers for Swift and Objective C&lt;/li&gt;
@@ -159,15 +159,15 @@ Chip encryption is based on embedded keys – &lt;b&gt;UID&lt;/b&gt; and &lt;b&g
 &lt;h1 id=&quot;keychain&quot;&gt;Keychain&lt;/h1&gt;
 
 &lt;p&gt;Keychain – is a centralized encrypted storage that was designed mostly for storing sensitive data like usernames, passwords, access tokens certificates, with attached public and private keys. The basic engine – is SQLite database.
-Also keychain can be used for sharing data between applications. Another useful case - is to keep data after application deletion.
-Group access to keychain data became possible after introducing Keychain-Access-Groups. Applications with the same keychain access group entitlement can access items.&lt;/p&gt;
+Also keychain can be used for sharing data between applications. Another useful case - is to keep data after the application deletion.
+Group access to keychain data has become possible after introducing Keychain-Access-Groups. Applications with the same keychain access group entitlement can access items.&lt;/p&gt;
 
 &lt;h2 id=&quot;keychain-protection-types&quot;&gt;Keychain Protection Types&lt;/h2&gt;
 &lt;p&gt;Some of the keychain protection types are similar to file.
 First one is &lt;b&gt;kSecAttrAccessibleWhenUnlocked&lt;/b&gt;. It works in similar way as NSFileProtectionComplete. You cannot have any access to item until you’ll unlock your device.
 &lt;b&gt;kSecAttrAccessibleAfterFirstUnlock&lt;/b&gt; – analog of NSFileProtectionCompleteUntilFirstUserAuthentication. Any access is closed until user will enter passcode after rebooting.
-&lt;b&gt;kSecAttrAccessibleAlways&lt;/b&gt; – I even can’t add anything. Everything is describes in name.
-I’d like to pay attention on interesting type called &lt;b&gt;kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly&lt;/b&gt;. It is used when your app is &lt;b&gt;using iCloud&lt;/b&gt;. Also it works only if &lt;b&gt;passcode enabled&lt;/b&gt;. This protection type means you provide access to items only from current device.&lt;/p&gt;
+&lt;b&gt;kSecAttrAccessibleAlways&lt;/b&gt; – I even can’t add anything. Everything is described by a name.
+I’d like to pay attention on interesting type called &lt;b&gt;kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly&lt;/b&gt;. It is used when your app is &lt;b&gt;using iCloud&lt;/b&gt;. Also it works only if &lt;b&gt;passcode is enabled&lt;/b&gt;. This protection type means that you provide access to items only from current device.&lt;/p&gt;
 
 &lt;h1 id=&quot;app-transport-security&quot;&gt;App Transport Security&lt;/h1&gt;
 
@@ -194,7 +194,7 @@ Another very important requirement is:&lt;/p&gt;
 
 &lt;p&gt;If you want to learn more about requirements – welcome on page https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW35&lt;/p&gt;
 
-&lt;h1 id=&quot;some-advises&quot;&gt;Some Advises&lt;/h1&gt;
+&lt;h1 id=&quot;some-advice&quot;&gt;Some Advice&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Never use a password or hash as an encryption key&lt;/li&gt;
@@ -212,4 +212,4 @@ Another very important requirement is:&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;All described is a drop in the bucket, but I hope you have found some useful topics in this article. And going deep into any of them will help you to create amazing things.&lt;/p&gt;</content><category term="iOS" /><category term="iOS9" /><category term="Security" /><category term="Objective C" /><category term="Swift" /><category term="Secure Enclave" /><category term="PRNG" /><category term="Keychain" /><category term="App Transport Security" /><summary type="html">I hope, some of this information will protect you from making common mistakes during development for iOS9+.
-You will not find here any detailed instructions. But some topics can stimulate you to go deep with new knowledge.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://mkblog.info/%7B%22feature%22=%3E%22ios_security.jpg%22%7D" /></entry></feed>
+You will not find here any detailed instructions. But some topics can stimulate you to go deep within new knowledge.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://mkblog.info/%7B%22feature%22=%3E%22ios_security.jpg%22%7D" /></entry></feed>
