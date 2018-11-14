@@ -1,1 +1,1 @@
-Sitemap: https://mkblog.info/sitemap.xml
+Sitemap: http://mkblog.info/sitemap.xml
